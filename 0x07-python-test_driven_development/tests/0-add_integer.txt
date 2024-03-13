@@ -1,0 +1,24 @@
+# Test when a and b are both integers
+print(add_integer(1, 2))  # Expected output: 3
+
+# Test when a is an integer and b is a float
+print(add_integer(100, -2.0))  # Expected output: 98
+
+# Test when a is an integer and b is not provided
+print(add_integer(2))  # Expected output: 100
+
+# Test when a and b are both floats
+print(add_integer(100.3, -2.0))  # Expected output: 98
+
+# Test when a is an integer and b is a string
+try:
+    print(add_integer(4, "School"))
+except Exception as e:
+    print(e)  # Expected output: b must be an integer
+
+# Test when a is None
+try:
+    print(add_integer(None))
+except Exception as e:
+    print(e)  # Expected output: a must be an integer
+
