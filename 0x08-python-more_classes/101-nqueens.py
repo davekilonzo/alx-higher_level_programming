@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import sys
 
 def solve(n, i, a, b, c):
