@@ -1,26 +1,37 @@
 import sys
 
+def solve(n, i, a, b, c):
+    if i < n:
+        for j in range(n):
+            if j not in a and i+j not in b and i-j not in c:
+                for solution in solve(n, i+1, a+[j], b+[i+j], c+[i-j]):
+                    yield solution
+    else:
+        yield a
 
-def init_board(n):
-    """Initialize an `n`x`n` sized chessboard with 0's.
-    Args:
-        n: integer to initialize
+def print_solution(solution):
+    print("[", end="")
+    for i, pos in enumerate(solution):
+        print("[{}, {}]".format(i+1, pos+1), end="")
+        if i != len(solution) - 1:
+            print(", ", end="")
+    print("]")
 
-    Return: list of chessboard
-    """
-    board = []
-    [board.append([]) for i in range(n)]
-    [row.append(' ') for i in range(n) for row in board]
-    return (board)
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        exit(1)
+    try:
+        n = int(sys.argv[1])
+    except ValueError:
+        print("N must be a number")
+        exit(1)
+    if n < 4:
+        print("N must be at least 4")
+        exit(1)
+    for solution in solve(n, 0, [], [], []):
+        print_solution(solution)
 
-
-def board_deepcopy(board):
-    """Creates a deepcopy of a chessboard.
-    Arg:
-        board: chessboard to make copy from.
-
-    Return: a deepcopy of a chessboard.
-    """
-    if isinstance(board, list):
-        return list(map(board_deepcopy, board))
+if __name__ == "__main__":
+    main()
 
