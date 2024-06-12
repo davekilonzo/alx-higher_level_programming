@@ -1,5 +1,13 @@
 #!/usr/bin/python3
 
-def lookup(obj):
-    return dir(obj)
+"""
+    Module for a lookup function
+"""
 
+
+def lookup(obj):
+    """
+        Return list of available object and methods
+        in an object
+    """
+    return dir(obj)
